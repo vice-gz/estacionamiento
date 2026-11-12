@@ -1,19 +1,19 @@
 import {
   Activity, CarFront, Wifi, WifiOff, RefreshCw,
   CircleCheck, AlertTriangle, ShieldAlert, Clock3,
-  Lightbulb, RadioTower, Cpu,
+  Lightbulb, RadioTower, Cpu, History,
 } from 'lucide-react';
 import { useEstacionamiento } from './useEstacionamiento';
 import { useNow } from './useNow';
 
 // Deben coincidir con DISTANCIA_OCUPADO y DISTANCIA_LIBRE del ESP32
-const DISTANCIA_OCUPADO = 20;
+const DISTANCIA_OCUPADO = 10;
 const DISTANCIA_LIBRE = 100;
 const GAUGE_MAX = 150;
 
 // El ESP32 manda un respaldo cada 30 s aunque no haya cambios.
 // Si pasan más de 45 s sin datos, se considera sin señal.
-const ESP32_TIMEOUT_MS = 30000;
+const ESP32_TIMEOUT_MS = 45000;
 
 const STATUS = {
   loading: {
@@ -220,6 +220,9 @@ export default function App() {
         <div className="eyebrow"><Activity size={15} /> SISTEMA DE MONITOREO</div>
         <h1>Estacionamiento <span>inteligente</span></h1>
         <p>Consulta el estado del espacio y las lecturas del sensor en tiempo real.</p>
+        <a className="page-link page-link-after" href="/historial">
+          <History size={16} /> Ver historial y gráfica
+        </a>
       </section>
 
       {connection === 'configuration' && (

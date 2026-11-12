@@ -30,6 +30,12 @@ Abre **SQL Editor → New query**, pega el contenido de `supabase/actualizado_en
 Ese script crea un trigger que guarda la hora del servidor cada vez que el ESP32 actualiza la fila.
 Sin él, `actualizado_en` nunca cambia y el dashboard parece no actualizarse.
 
+### Historial de cambios de estado
+
+Ejecuta también `supabase/historial_estados.sql` en el SQL Editor. Crea la tabla `historial_estados`
+y un trigger que guarda la fecha y hora **solo cuando el estado cambia** (el ESP32 no necesita cambios).
+El historial y su gráfica se ven en la página `/historial`.
+
 ## 2. Instalar y ejecutar
 
 Abre una terminal en esta carpeta:
